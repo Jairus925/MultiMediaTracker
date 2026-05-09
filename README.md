@@ -1,1 +1,4 @@
 # MultiMediaTracker
+.vs/
+bin/
+obj/
