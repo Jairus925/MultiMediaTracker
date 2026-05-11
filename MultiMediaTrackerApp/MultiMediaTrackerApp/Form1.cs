@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 using System.Xml;
 
 namespace MultiMediaTrackerApp
@@ -34,12 +35,27 @@ namespace MultiMediaTrackerApp
             cboType.Items.Add("Movie");
             cboType.Items.Add("Game");
             cboType.Items.Add("Manga");
+ 
 
             cboStatus.Items.Add("Planning");
-            cboStatus.Items.Add("Watching");
+            cboStatus.Items.Add("In Progress");
             cboStatus.Items.Add("On-Hold");
             cboStatus.Items.Add("Completed");
             cboStatus.Items.Add("Dropped");
+
+            if (File.Exists("watchlist.xml"))
+            {
+                XmlDocument doc = new XmlDocument();
+
+                doc.Load("watchlist.xml");
+
+                XmlElement root = doc.DocumentElement;
+
+                foreach (XmlNode node in root.ChildNodes)
+                {
+                    lstEntries.Items.Add(node.InnerText);
+                }
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
