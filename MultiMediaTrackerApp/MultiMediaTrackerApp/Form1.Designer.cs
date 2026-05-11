@@ -1,4 +1,4 @@
-﻿namespace WatchlistApp
+﻿namespace MultiMediaTrackerApp
 {
     partial class Form1
     {

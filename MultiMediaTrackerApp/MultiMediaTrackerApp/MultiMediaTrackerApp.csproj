@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BC687BC2-AD7E-482E-AA32-81EBB582950A}</ProjectGuid>
+    <ProjectGuid>{CA22CE9A-1AEB-421F-93D2-AA2EFEADFD7C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>WatchlistApp</RootNamespace>
-    <AssemblyName>WatchlistApp</AssemblyName>
+    <RootNamespace>MultiMediaTrackerApp</RootNamespace>
+    <AssemblyName>MultiMediaTrackerApp</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

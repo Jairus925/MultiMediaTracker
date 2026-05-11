@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WatchlistApp.Properties
+namespace MultiMediaTrackerApp.Properties
 {
 
 
