@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace MultiMediaTrackerApp
@@ -59,11 +60,11 @@ namespace MultiMediaTrackerApp
                 XmlNode root = doc.SelectSingleNode("watchlist");
                 foreach (XmlNode node in root.ChildNodes)
                 {
-                    string listEntry = "Title: " + node.Attributes["title"].Value +
-                    "\nType: " + node.Attributes["type"].Value +
-                    "\nStatus: " + node.Attributes["status"].Value +
-                    "\nRating: " + node.Attributes["rating"].Value;
-                    lstEntries.Items.Add(listEntry);
+                    lstEntries.Items.Add("Title: " + node.Attributes["title"].Value);
+                    lstEntries.Items.Add("Type: " + node.Attributes["type"].Value);
+                    lstEntries.Items.Add("Status: " + node.Attributes["status"].Value);
+                    lstEntries.Items.Add("Rating: " + node.Attributes["rating"].Value);
+                    lstEntries.Items.Add("---------------------------------------------");
                 }
             }
         }
@@ -83,9 +84,6 @@ namespace MultiMediaTrackerApp
                 return;
             }
 
-            string entry = "Title: " + title + "\nType: " + type + "\nStatus: " + status + "\nRating: " + rating;
-
-            lstEntries.Items.Add(entry);
             XmlDocument doc = new XmlDocument();
             doc.Load("watchlist.xml");
             XmlNode root = doc.SelectSingleNode("watchlist");
@@ -102,6 +100,12 @@ namespace MultiMediaTrackerApp
             entryElement.SetAttribute("rating", rating);
 
             root.AppendChild(entryElement);
+
+            lstEntries.Items.Add("Title: " + entryElement.Attributes["title"].Value);
+            lstEntries.Items.Add("Type: " + entryElement.Attributes["type"].Value);
+            lstEntries.Items.Add("Status: " + entryElement.Attributes["status"].Value);
+            lstEntries.Items.Add("Rating: " + entryElement.Attributes["rating"].Value);
+            lstEntries.Items.Add("---------------------------------------------");
 
             doc.Save("watchlist.xml");
 
@@ -144,11 +148,11 @@ namespace MultiMediaTrackerApp
 
             foreach(XmlNode node in parent.ChildNodes)
             {
-                string listEntry = "Title: " + node.Attributes["title"].Value + 
-                    "\nType: " + node.Attributes["type"].Value + 
-                    "\nStatus: " + node.Attributes["status"].Value + 
-                    "\nRating: " + node.Attributes["rating"].Value;
-                lstEntries.Items.Add(listEntry);
+                lstEntries.Items.Add("Title: " + node.Attributes["title"].Value);
+                lstEntries.Items.Add("Type: " + node.Attributes["type"].Value);
+                lstEntries.Items.Add("Status: " + node.Attributes["status"].Value);
+                lstEntries.Items.Add("Rating: " + node.Attributes["rating"].Value);
+                lstEntries.Items.Add("---------------------------------------------");
             }
 
             doc.Save("watchlist.xml");
@@ -181,11 +185,11 @@ namespace MultiMediaTrackerApp
                 if (int.Parse(node.Attributes["number"].Value) > nodeNum)
                     node.Attributes["number"].Value = (int.Parse(node.Attributes["number"].Value) - 1).ToString();
 
-                string listEntry = "Title: " + node.Attributes["title"].Value +
-                    "\nType: " + node.Attributes["type"].Value +
-                    "\nStatus: " + node.Attributes["status"].Value +
-                    "\nRating: " + node.Attributes["rating"].Value;
-                lstEntries.Items.Add(listEntry);
+                lstEntries.Items.Add("Title: " + node.Attributes["title"].Value);
+                lstEntries.Items.Add("Type: " + node.Attributes["type"].Value);
+                lstEntries.Items.Add("Status: " + node.Attributes["status"].Value);
+                lstEntries.Items.Add("Rating: " + node.Attributes["rating"].Value);
+                lstEntries.Items.Add("---------------------------------------------");
             }
             doc.Save("watchlist.xml");
         }
