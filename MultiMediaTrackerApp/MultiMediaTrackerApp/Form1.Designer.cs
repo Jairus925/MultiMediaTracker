@@ -42,7 +42,9 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.entrySelect = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.entrySelect)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -119,7 +121,7 @@
             // lstEntries
             // 
             this.lstEntries.FormattingEnabled = true;
-            this.lstEntries.Location = new System.Drawing.Point(336, 37);
+            this.lstEntries.Location = new System.Drawing.Point(426, 37);
             this.lstEntries.Margin = new System.Windows.Forms.Padding(2);
             this.lstEntries.Name = "lstEntries";
             this.lstEntries.Size = new System.Drawing.Size(241, 264);
@@ -206,6 +208,17 @@
             this.label2.TabIndex = 13;
             this.label2.Text = "Entry No.";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.ErrorImage = global::MultiMediaTrackerApp.Properties.Resources.G39xqDRXkAAwI0J;
+            this.pictureBox1.Image = global::MultiMediaTrackerApp.Properties.Resources.G39xqDRXkAAwI0J;
+            this.pictureBox1.Location = new System.Drawing.Point(-118, -511);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(936, 980);
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -225,11 +238,13 @@
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.lblType);
             this.Controls.Add(this.lblTitle);
+            this.Controls.Add(this.pictureBox1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "MultiMediaTracker";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.entrySelect)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -251,6 +266,7 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.NumericUpDown entrySelect;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

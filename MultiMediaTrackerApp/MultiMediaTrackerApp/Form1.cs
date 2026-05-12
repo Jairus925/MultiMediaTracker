@@ -193,5 +193,10 @@ namespace MultiMediaTrackerApp
             }
             doc.Save("watchlist.xml");
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
