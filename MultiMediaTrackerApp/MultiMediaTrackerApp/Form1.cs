@@ -52,6 +52,20 @@ namespace MultiMediaTrackerApp
                 doc.AppendChild(root);
                 doc.Save("watchlist.xml");
             }
+            else
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.Load("watchlist.xml");
+                XmlNode root = doc.SelectSingleNode("watchlist");
+                foreach (XmlNode node in root.ChildNodes)
+                {
+                    string listEntry = "Title: " + node.Attributes["title"].Value +
+                    "\nType: " + node.Attributes["type"].Value +
+                    "\nStatus: " + node.Attributes["status"].Value +
+                    "\nRating: " + node.Attributes["rating"].Value;
+                    lstEntries.Items.Add(listEntry);
+                }
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -62,6 +76,12 @@ namespace MultiMediaTrackerApp
             string status = cboStatus.Text;
             string rating = cboRating.Text;
 
+
+            if (title == "" || type == "" || status == "" || rating == "")
+            {
+                MessageBox.Show("Please fill out all fields.");
+                return;
+            }
 
             string entry = "Title: " + title + "\nType: " + type + "\nStatus: " + status + "\nRating: " + rating;
 
@@ -95,7 +115,6 @@ namespace MultiMediaTrackerApp
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            lstEntries.Items.Clear();
             string title = tbxTitle.Text;
             string type = cboType.Text;
             string status = cboStatus.Text;
@@ -111,7 +130,7 @@ namespace MultiMediaTrackerApp
                 MessageBox.Show("Cannot edit entry. Entry not found.");
                 return;
             }
-
+            lstEntries.Items.Clear();
             XmlNode parent = entry.ParentNode;
             XmlElement editedEntry = doc.CreateElement("entry");
 
@@ -125,25 +144,50 @@ namespace MultiMediaTrackerApp
 
             foreach(XmlNode node in parent.ChildNodes)
             {
-                string listEntry = "Title: " + title + "\nType: " + type + "\nStatus: " + status + "\nRating: " + rating;
+                string listEntry = "Title: " + node.Attributes["title"].Value + 
+                    "\nType: " + node.Attributes["type"].Value + 
+                    "\nStatus: " + node.Attributes["status"].Value + 
+                    "\nRating: " + node.Attributes["rating"].Value;
                 lstEntries.Items.Add(listEntry);
             }
+
+            doc.Save("watchlist.xml");
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            lstEntries.Items.Clear();
+            string title = tbxTitle.Text;
+            string type = cboType.Text;
+            string status = cboStatus.Text;
+            string rating = cboRating.Text;
 
             XmlDocument doc = new XmlDocument();
             doc.Load("watchlist.xml");
 
-            XmlNode entry = doc.SelectSingleNode("//entry[@Number='" + entrySelect.Text + "']");
+            XmlNode entry = doc.SelectSingleNode("//entry[@number='" + entrySelect.Text + "']");
 
             if (entry == null)
             {
-                MessageBox.Show("Cannot edit entry. Entry not found.");
+                MessageBox.Show("Cannot delete entry. Entry not found.");
                 return;
             }
+            lstEntries.Items.Clear();
+            int nodeNum = int.Parse(entry.Attributes["number"].Value);
+            XmlNode root = doc.SelectSingleNode("watchlist");
+            root.RemoveChild(entry);
+
+            foreach (XmlNode node in root.ChildNodes)
+            {
+                if (int.Parse(node.Attributes["number"].Value) > nodeNum)
+                    node.Attributes["number"].Value = (int.Parse(node.Attributes["number"].Value) - 1).ToString();
+
+                string listEntry = "Title: " + node.Attributes["title"].Value +
+                    "\nType: " + node.Attributes["type"].Value +
+                    "\nStatus: " + node.Attributes["status"].Value +
+                    "\nRating: " + node.Attributes["rating"].Value;
+                lstEntries.Items.Add(listEntry);
+            }
+            doc.Save("watchlist.xml");
         }
     }
 }
